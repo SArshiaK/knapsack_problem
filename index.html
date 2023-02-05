@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Document</title>
+
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <select name="method" id="method">
+            <option value="greedy">Greedy</option>
+            <option value="dynamic">Dynamic Programing</option>
+            <option value="backtracking">Backtracking</option>
+        </select>
+
+        <input type="button" id="btn" value="Show Result" onclick="Display()" />
+
+        
+        <table id='resultTable'>
+            <th>Name</th>
+            <th>Value</th>
+            <th>Weight</th>
+        </table>
+
+        <p id="maxprofit">Max profit: </p>
+    </body>
+</html>

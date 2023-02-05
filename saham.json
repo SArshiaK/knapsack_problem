@@ -1,0 +1,74 @@
+[
+    { 
+        "name": "Valespa", 
+        "weight": 6012037, 
+        "value": 560000,
+        "vw" : 0.093
+    },
+    { 
+        "name": "Noori", 
+        "weight": 15011070, 
+        "value": 240000,
+        "vw" : 0.0159
+    },
+    { 
+        "name": "Kala", 
+        "weight": 3066057, 
+        "value": 95000,
+        "vw": 0.031
+    },
+    { 
+        "name": "Pizad", 
+        "weight": 5090040, 
+        "value": 41000,
+        "vw": 0.008
+    },
+    { 
+        "name": "Sita", 
+        "weight": 2500306, 
+        "value": 114900,
+        "vw":0.045
+    },
+    { 
+        "name": "Sharom", 
+        "weight": 17736990, 
+        "value": 1700000 ,
+        "vw": 0.095
+    },
+    { 
+        "name": "Ghazar", 
+        "weight": 1030063, 
+        "value": 750000,
+        "vw": 0.728
+    },
+    { 
+        "name": "Barekat", 
+        "weight": 14700090, 
+        "value": 117000,
+        "vw":0.0079
+    },
+    { 
+        "name": "Shasta", 
+        "weight": 23061070, 
+        "value": 890000,
+        "vw":0.038
+    },
+    { 
+        "name": "Abada", 
+        "weight": 4000520, 
+        "value": 137000,
+        "vw":0.034
+    },
+    { 
+        "name": "Darayekom", 
+        "weight": 11800530, 
+        "value": 578000,
+        "vw":0.0489
+    },
+    { 
+        "name": "Arya", 
+        "weight": 19040100, 
+        "value": 635680,
+        "vw":0.033
+    }
+]
