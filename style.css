@@ -19,6 +19,12 @@ body{
     cursor: pointer;
 }
 
+#btn2{
+    background-color: rgb(47, 255, 220);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 #maxprofit{
     transition: all 300ms ease;
     /* transition:  0.5s cubic-bezier(0.39, -0.69, 0.59, 1.54); */

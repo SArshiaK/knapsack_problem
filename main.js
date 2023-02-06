@@ -12,7 +12,7 @@ fetch("saham.json")
             saham.push(data[i]);
         }
     });
-console.log(saham);
+// console.log(saham);
 
 function sortByVW(data) {
     data = data.sort((a, b) => {
@@ -82,6 +82,41 @@ function dynamicPrograming(data) {
     return [maxprofit, pickedStocks];
 }
 
+var maxProfitBacktrack = 0;
+var currentWeight = 0;
+var currentValue = 0;
+var x = [];
+
+function backtrack(i) {
+    if (i > saham.length - 1) {
+        maxProfitBacktrack = currentValue;
+    } else if (currentWeight + saham[i]["weight"] <= TOTAL_WEIGHT) {
+        currentWeight += saham[i]["weight"];
+        currentValue += saham[i]["value"];
+
+        backtrack(i + 1);
+        currentWeight -= saham[i]["weight"];
+        currentValue -= saham[i]["value"];
+    } else {
+    }
+    if (bound(i + 1) > maxProfitBacktrack) {
+        backtrack(i + 1);
+    }
+}
+function bound(i) {
+    var remainWeight = TOTAL_WEIGHT - currentWeight;
+    var bound = currentValue;
+    while (i < saham.length && saham[i]["weight"] <= remainWeight) {
+        remainWeight -= saham[i]["weight"];
+        bound += saham[i]["value"];
+        i++;
+    }
+    if (i < saham.length - 1) {
+        bound += (saham[i]["value"] * remainWeight) / saham[i]["weight"];
+    }
+    return bound;
+}
+
 function createRows(pickedStocks) {
     var table = document.getElementById("resultTable");
 
@@ -119,6 +154,40 @@ function createRows(pickedStocks) {
     }, 500);
 }
 
+function createErrorRow() {
+    var table = document.getElementById("resultTable");
+
+    var tableHeaderRowCount = 1; // Delete table rows
+    var rowCount = table.rows.length;
+    for (var i = tableHeaderRowCount; i < rowCount; i++) {
+        table.deleteRow(tableHeaderRowCount);
+    }
+
+    let row = document.createElement("tr");
+
+    let c0 = document.createElement("td");
+    let c1 = document.createElement("td");
+    let c2 = document.createElement("td");
+    let c3 = document.createElement("td");
+
+    c0.innerText = 0;
+    c1.innerText = "Error occurred";
+    c2.innerText = "I couldn't find stocks";
+    c3.innerText = "This is my problem. Not yours";
+
+    row.appendChild(c0);
+    row.appendChild(c1);
+    row.appendChild(c2);
+    row.appendChild(c3);
+
+    table.appendChild(row);
+
+    window.setTimeout(function () {
+        // for transition
+        table.style.transform = "scale(1)";
+    }, 500);
+}
+
 function Display() {
     var table = document.getElementById("resultTable");
     table.style.transform = "scale(0)"; // for transition
@@ -140,8 +209,7 @@ function Display() {
             // for transition
             maxprofitTag.style.transform = "scale(1)";
         }, 700);
-    } 
-    else if (method === "dynamic") {
+    } else if (method === "dynamic") {
         let [maxP, picked] = dynamicPrograming(saham);
 
         createRows(picked);
@@ -151,7 +219,37 @@ function Display() {
             // for transition
             maxprofitTag.style.transform = "scale(1)";
         }, 700);
-    } 
-    else if (method === "backtracking") {
+    } else if (method === "backtracking") {
+        sortByVW(saham);
+        saham.reverse();
+        // console.log(saham);
+        backtrack(0);  
+        createErrorRow();
+
+        maxprofitTag.innerHTML = "Max Profit: " + maxProfitBacktrack;
+        window.setTimeout(function () {
+            // for transition
+            maxprofitTag.style.transform = "scale(1)";
+        }, 700);
     }
+}
+
+function getAllData(){
+    var table = document.getElementById("resultTable");
+    table.style.transform = "scale(0)"; // for transition
+
+    var maxprofitTag = document.getElementById("maxprofit");
+    maxprofitTag.style.transform = "scale(0)";
+    
+    createRows(saham);
+    var totalValue = 0;
+    for(var i=0; i<saham.length; i++){
+        totalValue += saham[i]['value'];
+    }
+
+    maxprofitTag.innerHTML = "Max  Value: " + totalValue;
+    window.setTimeout(function () {
+            // for transition
+            maxprofitTag.style.transform = "scale(1)";
+        }, 700);
 }
